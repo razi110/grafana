@@ -9,6 +9,7 @@ import { DataLinks } from './DataLinks';
 export type Props = DataSourcePluginOptionsEditorProps<ElasticsearchOptions>;
 export const ConfigEditor = (props: Props) => {
   const { options, onOptionsChange } = props;
+  console.log(options);
 
   // Apply some defaults on initial render
   useEffect(() => {
@@ -18,6 +19,7 @@ export const ConfigEditor = (props: Props) => {
       jsonData: {
         ...options.jsonData,
         timeField: options.jsonData.timeField || '@timestamp',
+        includeFrozen: options.jsonData.includeFrozen ?? false,
         esVersion,
         maxConcurrentShardRequests:
           options.jsonData.maxConcurrentShardRequests || defaultMaxConcurrentShardRequests(esVersion),
